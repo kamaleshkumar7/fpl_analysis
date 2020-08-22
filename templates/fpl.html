@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name='viewport' content='width=device-width' />
+<style>
+body {font-family: "Lato", sans-serif;}
+.header {
+  padding: 60px;
+  text-align: center;
+  font-family: "PremierSans-Bold", Arial, "Helvetica Neue", Helvetica, "sans-seriff";
+  background-color: rgb(55, 0, 60);
+  color: white;
+  font-size: 30px;
+}
+.topleft {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  font-size: 18px;
+}
+.tablink {
+  background-color: #02894e;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #242424;
+}
+
+/* Style the tab content */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 50px;
+  text-align: center;
+  font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, 'sans-seriff';
+  color:black;
+}
+
+.btn-group button {
+  background-color: #4CAF50; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+    p{
+        font-family: "PremierSans-Bold", Arial, "Helvetica Neue", Helvetica, "sans-seriff";
+        font-size: 2rem;
+        color:black;
+    }
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+    
+table {
+   font-family: "PremierSans-Bold", Arial, "Helvetica Neue", Helvetica, "sans-seriff"; 
+  border-collapse: collapse;
+  width: 50%;
+    color: black;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color:rgb(55, 0, 60);;
+  color: black;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<img src="https://premierleague-static-files.s3.amazonaws.com/premierleague/photo/2018/12/14/9471c442-77fd-4983-9c45-b4a2b93be44a/PL-Lion.png" alt="Cinque Terre" class="topleft" width="200px" height="150px">
+<label style="font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, 'sans-seriff';">FANTASY PREMIER LEAGUE ASSISTANT</label>
+</div>
+<div style="width: auto; background-color: yellow;">
+<center>DISCLAIMER 1: No Machine Learning or Prediction used, Just Stats !</center>
+</div>
+    <div style="width: auto; background-color: yellow;">
+<center>DISCLAIMER 2 : New teams and players will be updated after GW 1</center>
+</div>
+<div class="btn-group">
+<button class="tablink" onclick="opentab('teamval', this)" id="defaultOpen">TEAM RANK STATS</button>
+<button class="tablink" onclick="opentab('teamrot', this)">SQUAD ROTATION STATS</button>
+<button class="tablink" onclick="opentab('playstat', this)">PLAYERS STATS</button>
+<button class="tablink" onclick="opentab('autoteam', this)">AUTO TEAM</button>
+
+    </div>
+<div id="teamval" class="tabcontent">
+  <h1>TOP VALUABLE TEAMS / TEAMS WHICH ARE WORTH TO INVEST</h1>
+    Correlation between team price and team points 
+    <p>This helps to identify teams that generate a decent return of Fantasy Points per dollar spent</p>
+    <center>
+    <table style="font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, 'sans-seriff';border-collapse: collapse;width: 50%;">
+        <tr><th style="color:white;">RANK</th><th style="color:white;">TEAM</th><th style="color:white;">VALUE</th></tr>
+    {% set count = namespace(value=1) %}
+      {% for team in teamval %}
+        <tr><td align="center">{{ count.value }}</td>
+        <td align="center">{{team[0]}}</td>
+        <td align="center">{{team[1]}}</td>
+        </tr>
+      {% set count.value = count.value + 1 %}
+    {% endfor %}  
+    </table>
+        </center>
+</div>
+<div id="autoteam" class="tabcontent">
+  <h1>VALUABLE PLAYERS AUTO TEAM</h1>
+<p>players who are worth the money (balancing point and price)</p>
+<center>
+    <table style="font-family: 'PremierSans-Bold', Arial, 'Helvetica Neue', Helvetica, 'sans-seriff';border-collapse: collapse;table-layout: fixed;">
+    <tr><td></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td></td></tr>
+    <tr><td></td><td align="center"><b>{{roiteam[0][0]}} - {{roiteam[0][1]}}</b></td>><td></td><td align="center"><b>{{roiteam[1][0]}} - {{roiteam[1][1]}}</b></td><td></td></tr>
+    <tr><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td></tr>
+     <tr><td align="center"><b>{{roiteam[2][0]}} - {{roiteam[2][1]}}</b></td><td align="center"><b>{{roiteam[3][0]}} - {{roiteam[3][1]}}</b></td><td align="center"><b>{{roiteam[4][0]}} - {{roiteam[4][1]}}</b></td><td align="center"><b>{{roiteam[5][0]}} - {{roiteam[5][1]}}</b></td><td align="center"><b>{{roiteam[6][0]}} - {{roiteam[6][1]}}</b></td></tr>
+    <tr><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td></tr>
+      <tr><td align="center"><b>{{roiteam[7][0]}} - {{roiteam[7][1]}}</b></td><td align="center"><b>{{roiteam[8][0]}} - {{roiteam[8][1]}}</b></td><td align="center"><b>{{roiteam[9][0]}} - {{roiteam[9][1]}}</b></td><td align="center"><b>{{roiteam[10][0]}} - {{roiteam[10][1]}}</b></td><td align="center"><b>{{roiteam[11][0]}} - {{roiteam[11][1]}}</b></td></tr>
+    <tr><td></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td><td align="center"><img src="https://www.svgrepo.com/show/122271/user.svg"></td></tr>
+    <tr><td></td><td align="center"><b>{{roiteam[12][0]}} - {{roiteam[12][1]}}</b></td><td align="center"><b>{{roiteam[13][0]}} - {{roiteam[13][1]}}</b></td><td align="center"><b>{{roiteam[14][0]}} - {{roiteam[14][1]}}</b></td><td></td></tr>
+    </table>
+    </center>
+</div>
+
+<div id="teamrot" class="tabcontent">
+  <center>  
+<p>The below graph heps to identify the teams with more consistent squad (less squad rotation) </p>
+<table>
+<tr><td style="background-color: deepskyblue"></td>
+<td style="text-align: left">Correlation between team price and team points</td></tr>
+<tr><td style="background-color: orange"></td>
+<td style="text-align: left">Number of players the coach uses on a regular basis</td></tr>
+</table>
+      <br>
+   <b> TIP : Invest on teams with longer blue bar and shorter orange bar </b>
+      <br><br><br>
+   <div>
+<table>
+{% for rot in teamrot %}
+<tr>
+<td>{{rot[0]}}</td><td>
+<div style="width:calc(30 * {{rot[1]}}px);background-color:deepskyblue;">{{rot[1]}}</div>
+<div style="width:calc(30 * {{rot[2]}}px);background-color:orange;">{{rot[2]}}</div></td>
+</tr>
+{% endfor %}  
+</table>
+</div>
+</center>
+</div>
+
+<div id="playstat" class="tabcontent">
+<center>
+      <p> Total points return per 1MM Fantasy-dollars spent on a player</p>
+    <p>Top 10 players (correlating points and price)</p>
+   <b> GOAL KEEPER</b>
+<table>
+<tr>
+<th style="color:white;">RANK</th><th style="color:white;">PLAYER</th><th style="color:white;">TEAM</th><th style="color:white;">PRICE</th></tr>
+    {% set count = namespace(value=1) %}
+      {% for gk in gkval %}
+        <tr><td align="center">{{ count.value }}</td>
+        <td align="center">{{gk[0]}}</td>
+        <td align="center">{{gk[1]}}</td>
+        <td align="center">{{gk[2]}}</td>
+        </tr>
+      {% set count.value = count.value + 1 %}
+    {% endfor %} 
+</table>
+<br><b>DEFENDER</b>
+<table>
+<tr>
+<th style="color:white;">RANK</th><th style="color:white;">PLAYER</th><th style="color:white;">TEAM</th><th style="color:white;">PRICE</th></tr>
+    {% set count = namespace(value=1) %}
+      {% for def in defval %}
+        <tr><td align="center">{{ count.value }}</td>
+        <td align="center">{{def[0]}}</td>
+        <td align="center">{{def[1]}}</td>
+        <td align="center">{{def[2]}}</td>
+        </tr>
+      {% set count.value = count.value + 1 %}
+    {% endfor %} 
+</table>
+<br><b>MID FIELDER</b>
+<table>
+<tr>
+<th style="color:white;">RANK</th><th style="color:white;">PLAYER</th><th style="color:white;">TEAM</th><th style="color:white;">PRICE</th></tr>
+    {% set count = namespace(value=1) %}
+      {% for mid in midval %}
+        <tr><td align="center">{{ count.value }}</td>
+        <td align="center">{{mid[0]}}</td>
+        <td align="center">{{mid[1]}}</td>
+        <td align="center">{{mid[2]}}</td>
+        </tr>
+      {% set count.value = count.value + 1 %}
+    {% endfor %} 
+</table>
+<br><b>FORWARD</b>
+<table>
+<tr>
+<th style="color:white;">RANK</th><th style="color:white;">PLAYER</th><th style="color:white;">TEAM</th><th style="color:white;">PRICE</th></tr>
+    {% set count = namespace(value=1) %}
+      {% for fwd in forval %}
+        <tr><td align="center">{{ count.value }}</td>
+        <td align="center">{{fwd[0]}}</td>
+        <td align="center">{{fwd[1]}}</td>
+        <td align="center">{{fwd[2]}}</td>
+        </tr>
+      {% set count.value = count.value + 1 %}
+    {% endfor %} 
+</table>
+    </center>
+</div>
+<script>
+function opentab(cityName,elmnt) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  document.getElementById(cityName).style.display = "block";
+
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
+</body>
+</html> 
