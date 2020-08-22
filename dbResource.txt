@@ -1,0 +1,54 @@
+DATABASE 
+
+TABLES:
+valueteam
+teamrot
+roiteam
+gkval
+defval
+midval
+defval
+forval
+
+TABLE DESCRIPTION:
+valueteam - store team name and their ROI(points/price)
+teamrot - store no of players used by coach (team rotation)
+roiteam - store auto team ROI (points/price)
+gkval - top 10 ROI gk
+defval - top 10 ROI defender
+midval - top 10 ROI midfielder 
+forval - top 10 ROI forward
+
+TABLE SCHEMA
+valueteam
+	- team
+	- value
+teamrot
+	- team
+	- value
+	- mins
+roiteam
+	- team
+	- value
+gkval
+	- player
+	- team
+	- value
+defval
+	- player
+	- team
+	- value
+midval
+	- player
+	- team
+	- value
+defval
+	- player
+	- team
+	- value
+forval
+	- player
+	- team
+	- value
+
+
